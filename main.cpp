@@ -97,7 +97,6 @@ public:
             DrawString(ScreenWidth() / 2 - 100, ScreenHeight() / 2 + 50, "By: Abhilekh Gautam", olc::WHITE, 2);
             DrawString(ScreenWidth() / 2 - 100, ScreenHeight() / 2 + 80, "Press Enter to Continue", olc::WHITE, 1);
         } else if (life_count > 0 && life_count <= 3 && score < 350) {
-            std::cout << fElapsedTime << "\n";
             count = 1;
             Clear(olc::BLACK);
 
