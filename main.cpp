@@ -97,6 +97,7 @@ public:
             DrawString(ScreenWidth() / 2 - 100, ScreenHeight() / 2 + 50, "By: Abhilekh Gautam", olc::WHITE, 2);
             DrawString(ScreenWidth() / 2 - 100, ScreenHeight() / 2 + 80, "Press Enter to Continue", olc::WHITE, 1);
         } else if (life_count > 0 && life_count <= 3 && score < 350) {
+            std::cout << fElapsedTime << "\n";
             count = 1;
             Clear(olc::BLACK);
 
@@ -107,18 +108,18 @@ public:
 
             if (GetKey(olc::Key::LEFT).bHeld) {
                 if (fPlayerPositionX > 0.0f)
-                    fPlayerPositionX = fPlayerPositionX - fPlayerVel;
+                    fPlayerPositionX = fPlayerPositionX - fPlayerVel * fElapsedTime;
             }
             if (GetKey(olc::Key::RIGHT).bHeld) {
-                if (fPlayerPositionX + sprPlayer->width < (float) ScreenWidth() - 10)
-                    fPlayerPositionX = fPlayerPositionX + fPlayerVel;
+                if (fPlayerPositionX + (float)sprPlayer->width < (float) ScreenWidth() - 10)
+                    fPlayerPositionX = fPlayerPositionX + fPlayerVel * fElapsedTime;
             }
             if (GetKey(olc::Key::UP).bHeld) {
-                fPlayerPositionY = fPlayerPositionY - fPlayerVel;
+                fPlayerPositionY = fPlayerPositionY - fPlayerVel * fElapsedTime;
             }
             if (GetKey(olc::Key::DOWN).bHeld) {
-                if (fPlayerPositionY + sprPlayer->height < (float) ScreenHeight())
-                    fPlayerPositionY = fPlayerPositionY + fPlayerVel;
+                if (fPlayerPositionY + (float)sprPlayer->height < (float) ScreenHeight())
+                    fPlayerPositionY = fPlayerPositionY + fPlayerVel * fElapsedTime;
             }
 
             // shoot
@@ -146,7 +147,7 @@ public:
                 // only take care of bullets which are visible on the screen
                 if (elm.y > -1 && !elm.dead) {
                     FillCircle(int(elm.x), int(elm.y), 1, olc::RED);
-                    elm.y = elm.y - fBulletVel;
+                    elm.y = elm.y - fBulletVel * fElapsedTime;
                 }
             }
 
@@ -167,8 +168,8 @@ public:
                 float cosTheta = (tempX / Hypo);
 
                 // simply moves enemy towards player..
-                vEnemy[index].x = vEnemy[index].x - fEnemyVel * cosTheta;
-                vEnemy[index].y = vEnemy[index].y - fEnemyVel * sinTheta;
+                vEnemy[index].x = vEnemy[index].x - fEnemyVel * cosTheta * fElapsedTime;
+                vEnemy[index].y = vEnemy[index].y - fEnemyVel * sinTheta * fElapsedTime;
 
                 // enemy vs player collision detection
                 // increase score
@@ -227,9 +228,9 @@ private:
     float fPlayerPositionY = 250.0f;
 
     // game universe constants
-    float fPlayerVel = 0.2f;
-    float fBulletVel = 0.4f;
-    float fEnemyVel = 0.4f;
+    float fPlayerVel = 90.0f;
+    float fBulletVel = 180.0f;
+    float fEnemyVel = 180.0f;
 
     std::vector<Bullet> vBullet;
     std::vector<Enemy> vEnemy;
