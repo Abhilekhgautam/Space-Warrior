@@ -1,6 +1,8 @@
 # Space-Warrior
 Space Warrior is a 2D game written by Abhilekh Gautam. It uses C++
-  and olc pixel game engine for drawing and olc sound wave engine for music stuff
+  and olc pixel game engine for drawing and olc sound wave engine for music stuff.
+  If you are interested to learn how to create games like this, I have everything covered for you in my book
+  ![Write your first game in C++](https://abhilekhgautam.github.io/Your-First-Game-in-CPP/book/index.html)
 
   For more about olc Pixel Game engine visit: https://github.com/OneLoneCoder/olcPixelGameEngine
   and for about olc sound wave engine visit: https://github.com/OneLoneCoder/olcSoundWaveEngine
