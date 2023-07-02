@@ -86,7 +86,7 @@ public:
         sprLife = std::make_unique<olc::Sprite>("../sprites/life-full.png");
 
         // play music
-        bgmEngine.PlayWaveform(bgm.get(), true);
+         bgmEngine.PlayWaveform(bgm.get(), true);
         return true;
     }
 
@@ -155,7 +155,7 @@ public:
             if (vEnemy[index].alive) {
                 // distance calculation between enemy and player..
                 float tempX = (vEnemy[index].x + float(sprEnemy->height) + float(sprEnemy->width) / 2 -
-                               (fPlayerPositionX + float(sprPlayer->width) / 2 - 5
+                               (fPlayerPositionX + float(sprPlayer->width) / 2
                                ));
                 float tempY = (vEnemy[index].y + float(sprEnemy->height) - fPlayerPositionY);
 
@@ -178,6 +178,7 @@ public:
                     vEnemy[index].y + float(sprEnemy->height) >= fPlayerPositionY) {
                     bgmEngine.PlayWaveform(blast.get(), false);
                     vEnemy[index].alive = false;
+                    DrawSprite(olc::vi2d(int(vEnemy[index].x), int(vEnemy[index].y)), sprExplosion.get());
                     score = score + 5;
                     life_count = life_count - 1;
                 }
@@ -221,6 +222,7 @@ public:
     }
 
 private:
+
 
     // players starting position
     float fPlayerPositionX = 185.0f;
